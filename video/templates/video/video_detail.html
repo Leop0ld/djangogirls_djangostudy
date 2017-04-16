@@ -1,0 +1,50 @@
+{% load staticfiles %}
+
+<html>
+<head>
+    <title>Video Detail</title>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+</head>
+<body>
+<div class="content container">
+    <header class="page-header">
+        <h1>Video Detail</h1>
+    </header>
+    <div class="row">
+        <div class="col-md-16">
+            <div id="player"></div>
+        </div>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input type="text" name="title" class="form-control" id="title" placeholder="Title"
+                       value="{{ video.title }}">
+            </div>
+            <div class="form-group">
+                <label for="video_key">Video Key</label>
+                <input type="text" name="key" class="form-control" id="video_key" placeholder="Video Key"
+                       value="{{ video.key }}">
+            </div>
+            <button type="submit" class="btn btn-default">Submit</button>
+        </form>
+        <a href="/video/{{ video.id }}/delete" class="btn btn-danger">Delete</a>
+    </div>
+</div>
+</body>
+<script>
+    var tag = document.createElement('script');
+
+    tag.src = "https://www.youtube.com/iframe_api";
+    var firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+    var player;
+    function onYouTubeIframeAPIReady() {
+        player = new YT.Player('player', {
+            videoId: '{{ video.key }}'
+        });
+    }
+</script>
+</html>
