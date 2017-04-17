@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.urls import reverse
 
 from .models import Video
 
@@ -20,7 +21,7 @@ def video_detail(request, video_id):
 
         video.save()
 
-        return redirect('/video/' + str(video.id))
+        return redirect(reverse('video:detail', args=(video.id, )))
     return render(request, 'video/video_detail.html', {'video': video})
 
 
@@ -36,7 +37,7 @@ def video_new(request):
 
         video.save()
 
-        return redirect('/video/' + str(video.id))
+        return redirect(reverse('video:detail', args=(video.id, )))
 
     return render(request, 'video/video_new.html')
 
