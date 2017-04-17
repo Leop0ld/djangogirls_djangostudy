@@ -10,12 +10,12 @@
 <div class="content container">
     <header class="page-header" style="overflow: auto;">
         <h1 style="display: inline;">Video List</h1>
-        <a class="btn btn-default" href="/video/new" style="float: right;">New Video</a>
+        <a class="btn btn-default" href="{% url 'video:new' %}" style="float: right;">New Video</a>
     </header>
     <div class="row">
         <div class="col-md-12">
             {% for video in video_list %}
-                <a href="/video/{{ video.id }}">
+                <a href="{% url 'video:detail' video.id %}">
                     <h4>{{ video.title }}</h4>
                 </a>
             {% endfor %}

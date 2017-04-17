@@ -29,7 +29,7 @@
             </div>
             <button type="submit" class="btn btn-default">Submit</button>
         </form>
-        <a href="/video/{{ video.id }}/delete" class="btn btn-danger">Delete</a>
+        <a href="{% url 'video:delete' video.id %}" class="btn btn-danger">Delete</a>
     </div>
 </div>
 </body>
